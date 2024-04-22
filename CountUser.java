@@ -1,3 +1,5 @@
+package AddressBook;
+
 import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +14,7 @@ public class CountUser {
             ResultSet resultSet = stmt.executeQuery(q);
             if (resultSet.next()){
                 int rowCount = resultSet.getInt("row_count");
-                System.out.println(rowCount + "users present in an addressbook");
+                System.out.println(rowCount + " users present in an addressbook");
             }
         }
         catch(Exception e){
