@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
-public class UpdateUser {
+public class UpdateUser extends Throwable{
 
-    static void updateUser(){
+    static void updateUser()
+    {
         try{
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter contact number: ");

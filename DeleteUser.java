@@ -13,8 +13,7 @@ public class DeleteUser {
                 String q = "DELETE FROM contactdetails WHERE usrContact = ?";
                 PreparedStatement pstmt = con.prepareStatement(q);
                 pstmt.setString(1, usrContact);
-                int rowsDeleted = pstmt.executeUpdate();
-                return rowsDeleted;
+                return pstmt.executeUpdate();
             }
             else {
                 System.out.println("No record found");

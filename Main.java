@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Main {
 
-    static String usrName;
-    static String usrMail;
-    static String usrCity;
-    static String usrState;
-    static int usrZip;
-    static String usrContact;
+    String usrName;
+    String usrMail;
+    String usrCity;
+    String usrState;
+    int usrZip;
+    String usrContact;
 
     Main(String usrName, String usrMail, String usrCity, String usrState, int usrZip, String usrContact){
         this.usrName  = usrName;
