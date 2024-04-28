@@ -16,7 +16,7 @@ public class InsertUser {
             pstmt.setString(2, user.usrMail);
             pstmt.setString(3, user.usrCity);
             pstmt.setString(4, user.usrState);
-            pstmt.setInt(5, user.usrZip);
+            pstmt.setString(5, user.usrZip);
             pstmt.setString(6, user.usrContact);
             pstmt.executeUpdate();
             flag = true;
@@ -28,40 +28,94 @@ public class InsertUser {
     }
 
     public static void addUser(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter username: ");
-        String usrName = sc.nextLine();
+        try{
 
-        if(CheckElement.checkName(usrName)){
-            System.out.println("Username already exists");
-            return;
+            Scanner sc = new Scanner(System.in);
+            String usrName, usrMail, usrCity, usrState, usrZip, usrContact;
+            while (true){
+                System.out.println("Enter username: ");
+                usrName = sc.nextLine();
+                if (CheckElement.checkName(usrName)){
+                    System.out.println("Username already exist");
+                }
+                else {
+                    break;
+                }
+            }
+
+            while(true){
+                System.out.println("Enter email: ");
+                usrMail = sc.nextLine();
+                if(!CheckRegex.isValidEmail(usrMail)){
+                    System.out.println("Not valid Email");
+                    System.out.println("You should have at least 4 or more characters\nDomain name should contain at least 3 or more characters\nAnd your mail should end with (.com, .net, .org, .edu, .gov, .co.in)");
+                }
+                else{
+                    break;
+                }
+            }
+
+            while(true){
+                System.out.println("Enter city:");
+                usrCity = sc.nextLine();
+                if (!CheckRegex.isValidCity(usrCity)){
+                    System.out.println("City name should not contain number or special character");
+                }
+                else {
+                    break;
+                }
+            }
+
+            while (true){
+                System.out.println("Enter state:");
+                usrState = sc.nextLine();
+                if(!CheckRegex.isValidState(usrState)){
+                    System.out.println("State name should not contain number or special character");
+                }
+                else {
+                    break;
+                }
+            }
+
+            while (true){
+                System.out.println("Enter zipcode:");
+                usrZip = sc.nextLine();
+                if(!CheckRegex.isValidZip(usrZip)){
+                    System.out.println("Zip code should only contain 6 digits");
+                }
+                else {
+                    break;
+                }
+            }
+
+//            sc.nextLine();
+
+
+
+            while (true){
+                System.out.println("Enter contact number:");
+                usrContact = sc.nextLine();
+                if(!CheckRegex.isValidContact(usrContact)){
+                    System.out.println("Contact should only contain 10 digits");
+                }
+                else if(CheckElement.checkContact(usrContact)){
+                    System.out.println("Contact already exists");
+                }
+                else {
+                    break;
+                }
+            }
+
+            Main user = new Main(usrName, usrMail, usrCity, usrState, usrZip, usrContact);
+
+            if (insertInDB(user)){
+                System.out.println("User added successfully");
+            }else {
+                System.out.println("Something went wrong");
+            }
         }
-        System.out.println("Enter email: ");
-        String usrMail = sc.nextLine();
-
-        System.out.println("Enter city:");
-        String usrCity = sc.nextLine();
-
-        System.out.println("Enter state:");
-        String usrState = sc.nextLine();
-
-        System.out.println("Enter zipcode:");
-        int usrZip = sc.nextInt();
-        sc.nextLine();
-
-        System.out.println("Enter contact number:");
-        String usrContact = sc.nextLine();
-        if(CheckElement.checkContact(usrContact)){
-            System.out.println("Contact already exists");
-            return;
-        }
-
-        Main user = new Main(usrName, usrMail, usrCity, usrState, usrZip, usrContact);
-
-        if (insertInDB(user)){
-            System.out.println("User added successfully");
-        }else {
-            System.out.println("Something went wrong");
+        catch (Exception e){
+            System.out.println(e);
         }
     }
 }

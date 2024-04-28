@@ -8,10 +8,10 @@ public class Main {
     String usrMail;
     String usrCity;
     String usrState;
-    int usrZip;
+    String usrZip;
     String usrContact;
 
-    Main(String usrName, String usrMail, String usrCity, String usrState, int usrZip, String usrContact){
+    Main(String usrName, String usrMail, String usrCity, String usrState, String usrZip, String usrContact){
         this.usrName  = usrName;
         this.usrMail = usrMail;
         this.usrCity = usrCity;
